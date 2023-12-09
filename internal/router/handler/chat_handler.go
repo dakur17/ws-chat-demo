@@ -81,6 +81,8 @@ func HandleChat(w http.ResponseWriter, r *http.Request, chatBox *usecase.ChatBox
 
 		// Excercise 1.1
 		// please complete this block to register user in chatbox
+		chatBox.AddClient(userChatboxID, conn)
+		defer chatBox.RemoveClient(userChatboxID, conn)
 	}
 
 	for {

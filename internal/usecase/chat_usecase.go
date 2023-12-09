@@ -58,10 +58,14 @@ func (cb *ChatBox) Broadcast(chatboxID string, curConn *websocket.Conn, message 
 
 		// Excercise 1.2
 		// please complete this block to send message to users
-	}
+		err := conn.WriteMessage(websocket.TextMessage, []byte(message))
+		if err != nil {
+			log.Println("Error broadcasting message to user :", err)
+		}
+		}
 
-	log.Printf("Broadcast clients : %+v\n", cb.clients)
-}
+		log.Printf("Broadcast clients : %+v\n", cb.clients)
+	}
 
 func (cb *ChatBox) findConn(chatboxID string, conn *websocket.Conn) int {
 	for i, c := range cb.clients[chatboxID] {
